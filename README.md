@@ -15,7 +15,7 @@ Easy create a VM cluster!
   <img align="left" alt="wise Up Data's LinkedIN" width="22px" src="https://raw.githubusercontent.com/wiseupdata/wiseupdata/main/assets/linkedin.png" />
 </a>
 
-![visitors](https://visitor-badge.glitch.me/badge?page_id=wiseupdata.terraform-oci-datalake&left_color=green&right_color=black)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fwiseupdata%2Fterraform-oci-cluster_vm&countColor=%2337d67a&style=flat)
 ![GitHub](https://img.shields.io/github/license/wiseupdata/terraform-oci-datalake)
 
 ---
@@ -82,6 +82,7 @@ terraform destroy -auto-approve
 1. [Set OCI tf_vars](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformproviderconfiguration.htm)
 1. [Find variables from OCI](https://www.youtube.com/watch?v=bWdV2w27dl0)
 1. [Generate fingeprint](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm)
+1. [OCI regions](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm)
 
 ```bash
 mkdir ~/.oci
