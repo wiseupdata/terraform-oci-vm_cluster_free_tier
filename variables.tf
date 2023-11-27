@@ -1,6 +1,12 @@
 ########################################
 # Optional 
 ########################################
+variable "tenancy_ocid" {
+}
+
+########################################
+# Optional 
+########################################
 variable "company_name" {
   description = "The name of the company."
   type        = string
