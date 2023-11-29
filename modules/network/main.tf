@@ -62,10 +62,11 @@ resource "oci_core_security_list" "this" {
     stateless   = false
   }
 
+  # Change with you public IP to access the VM by ssh
   ingress_security_rules {
     protocol    = "6"
     stateless   = false
-    source      = "188.251.216.185/32"
+    source      = "0.0.0.0/0"
     description = "SSH"
     tcp_options {
       min = 22
@@ -87,30 +88,8 @@ resource "oci_core_security_list" "this" {
   ingress_security_rules {
     protocol    = "6"
     stateless   = false
-    source      = "188.251.216.185/32"
-    description = "kb8s"
-    tcp_options {
-      min = 6443
-      max = 6443
-    }
-  }
-
-  ingress_security_rules {
-    protocol    = "6"
-    stateless   = false
-    source      = "188.251.216.185/32"
-    description = "rdp"
-    tcp_options {
-      min = 3389
-      max = 3389
-    }
-  }
-
-  ingress_security_rules {
-    protocol    = "6"
-    stateless   = false
     source      = "0.0.0.0/0"
-    description = "application"
+    description = "public application"
     tcp_options {
       min = 32222
       max = 32222

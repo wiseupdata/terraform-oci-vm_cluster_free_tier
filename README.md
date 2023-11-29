@@ -73,6 +73,11 @@ Check the result🏅
 terraform destroy -auto-approve
 ```
 
+## OCI credentials 🤜
+
+
+
+
 <br>
 <br>
 

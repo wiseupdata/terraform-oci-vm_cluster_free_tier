@@ -1,6 +1,7 @@
 ########################################
 # Optional 
 ########################################
+# Get automatic from the TF_VARs
 variable "tenancy_ocid" {
 }
 
@@ -10,13 +11,13 @@ variable "tenancy_ocid" {
 variable "company_name" {
   description = "The name of the company."
   type        = string
-  default     = "wiseupdata"
+  default     = "etldataflow"
 }
 
 variable "app_name" {
   description = "The name of the application"
   type        = string
-  default     = "dl"
+  default     = "kb8"
 }
 
 variable "compartment_id" {
@@ -28,7 +29,7 @@ variable "compartment_id" {
 variable "env" {
   description = "System environment."
   type        = string
-  default     = "develop"
+  default     = "prd"
 }
 
 variable "default_tags" {
