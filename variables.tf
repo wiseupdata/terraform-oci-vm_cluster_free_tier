@@ -8,16 +8,21 @@ variable "tenancy_ocid" {
 ########################################
 # Optional 
 ########################################
+
+variable "oci_ssh_authorized_key" {
+  default = "~/.ssh/id_rsa.pub"
+}
+
 variable "company_name" {
   description = "The name of the company."
   type        = string
-  default     = "etldataflow"
+  default     = "wiseupdata"
 }
 
 variable "app_name" {
   description = "The name of the application"
   type        = string
-  default     = "kb8"
+  default     = "vms"
 }
 
 variable "compartment_id" {
@@ -26,10 +31,17 @@ variable "compartment_id" {
   default     = "auto-create"
 }
 
+variable "availability_domain" {
+  description = "The OCID of the compartment where the resources will be created. You can find the compartment ID in the OCI Console by navigating to the compartment where you want to create the resources and copying the OCID from the compartment details page."
+  type        = string
+  default     = "auto-select"
+
+}
+
 variable "env" {
   description = "System environment."
   type        = string
-  default     = "prd"
+  default     = "dev"
 }
 
 variable "default_tags" {
@@ -51,4 +63,8 @@ locals {
 
   compartment_name = "cp-${var.app_name}-${var.company_name}-${var.env}"
 
+  domain_ad = [
+    for ad in data.oci_identity_availability_domains.ADs.availability_domains : ad.name
+    if can(regex("ad1", lower(replace(ad.name, "/[^a-zA-Z0-9]/", ""))))
+  ][0]
 }

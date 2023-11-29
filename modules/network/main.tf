@@ -116,7 +116,7 @@ resource "oci_core_subnet" "this" {
   route_table_id             = oci_core_route_table.public.id
   security_list_ids          = ["${oci_core_security_list.this.id}"]
   vcn_id                     = oci_core_vcn.this.id
-  availability_domain        = lookup(var.availability_domain[each.value["adIndex"]], "name")
+  availability_domain        = var.availability_domain
   dhcp_options_id            = oci_core_vcn.this.default_dhcp_options_id
 
   freeform_tags = {
