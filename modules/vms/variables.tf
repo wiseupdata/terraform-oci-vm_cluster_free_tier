@@ -1,5 +1,5 @@
 variable "image_name" {
-  default = "ubuntu:latest"
+  default = "ubuntu"
 }
 
 variable "vms" {
@@ -27,7 +27,3 @@ variable "compartment_id" {}
 variable "generate_ip" {}
 variable "subnet" {}
 variable "oci_ssh_authorized_key" {}
-
-locals {
-  image_name = "${var.image_name}"
-}

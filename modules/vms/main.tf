@@ -9,7 +9,7 @@ resource "oci_core_instance" "vms" {
 
   source_details {
     source_type             = "image"
-    source_id               = local.image_name
+    source_id               = data.oci_artifacts_container_images.this.id
     boot_volume_size_in_gbs = each.value["storage"]
   }
 
