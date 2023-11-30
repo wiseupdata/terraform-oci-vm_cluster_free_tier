@@ -1,5 +1,5 @@
 variable "image_name" {
-  default = "ubuntu"
+  default = "Canonical Ubuntu 22.04"
 }
 
 variable "vms" {
@@ -27,3 +27,8 @@ variable "compartment_id" {}
 variable "generate_ip" {}
 variable "subnet" {}
 variable "oci_ssh_authorized_key" {}
+
+locals {
+  # image_id = data.oci_core_images.ubuntu_images.images[0].id
+  image_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaao27f22d7avekl642gfes2ijwezsuupwhtteh4wwyjwwgvyxzlzcq"
+}

@@ -10,7 +10,6 @@ variable "vcn" {
   default = {
     label                    = "etldf"
     internet_gateway_enabled = "true"
-    availability_domain      = "1"
     cidr                     = "30.0.0.0/16"
   }
 }
