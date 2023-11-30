@@ -32,9 +32,9 @@ variable "compartment_id" {
 }
 
 variable "availability_domain" {
-  description = "The OCID of the compartment where the resources will be created. You can find the compartment ID in the OCI Console by navigating to the compartment where you want to create the resources and copying the OCID from the compartment details page."
+  description = "ad1, ad1 or ad3"
   type        = string
-  default     = "auto-select"
+  default     = "ad1"
 
 }
 
@@ -65,6 +65,6 @@ locals {
 
   domain_ad = [
     for ad in data.oci_identity_availability_domains.ADs.availability_domains : ad.name
-    if can(regex("ad1", lower(replace(ad.name, "/[^a-zA-Z0-9]/", ""))))
+    if can(regex(var.availability_domain, lower(replace(ad.name, "/[^a-zA-Z0-9]/", ""))))
   ][0]
 }
