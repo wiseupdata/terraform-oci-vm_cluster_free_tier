@@ -5,4 +5,3 @@ git add . && git commit -am "sync" && git push && git tag 0.0.1 -f && git push -
 # Create the branch and tag
 git checkout -b 0.0.1 && git push --set-upstream origin 0.0.1
 
-
