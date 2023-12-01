@@ -22,7 +22,7 @@ Easy create a VM cluster Free Tier with 2 machines!
 ---
 
 <h1>
-<img align="left" alt="img" src="https://raw.githubusercontent.com/wiseupdata/vm_cluster_free_tier/main/assets/terraform.png" width="100" />
+<img align="left" alt="img" src="assets/imgs/terraform.png" width="100" />
 
 Module - Create a Free Tier Cluster 🚀️
 
@@ -99,7 +99,7 @@ openssl rsa -pubout -in ~/.oci/oci_api_key.pem -out ~/.oci/oci_api_key_public.pe
 cat ~/.oci/oci_api_key_public.pem
 ```
 
-<img align="left" alt="img" src="assets/imgs/api_key.png" width="1500" />
+<img align="center" alt="img" src="assets/imgs/api_key.png" width="500" />
 
 <br>
 <br>
