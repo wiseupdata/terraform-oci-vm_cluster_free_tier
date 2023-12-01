@@ -68,16 +68,21 @@ terraform plan -out plan.output
 terraform apply plan.output
 ```
 
+---
+
 Check the result🏅
 
----
+<img align="center" alt="img" src="https://raw.githubusercontent.com/wiseupdata/terraform-oci-vm_cluster_free_tier/main/assets/imgs/cluster.png" width="500" />
+
 ```bash
 # Ensure pb is security
 sudo chmod 600 ~/.ssh/id_rsa.pub
 
 #Connect to your new VM using the public ip from the output
-ssh -i ~/.ssh/id_rsa ubuntu@111.11.11.111
+ssh -i ~/.ssh/id_rsa ubuntu@130.61.168.233
 ```
+
+<img align="center" alt="img" src="https://raw.githubusercontent.com/wiseupdata/terraform-oci-vm_cluster_free_tier/main/assets/imgs/ssh.png" width="500" />
 
 ---
 
