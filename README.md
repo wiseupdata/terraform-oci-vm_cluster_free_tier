@@ -1,4 +1,4 @@
-Easy create a VM cluster!
+Easy create a VM cluster Free Tier with 2 machines!
 
 --- 
 
