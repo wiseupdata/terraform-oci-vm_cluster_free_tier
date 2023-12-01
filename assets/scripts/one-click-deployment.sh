@@ -7,4 +7,4 @@ git checkout -b v0.0.1 && git push --set-upstream origin v0.0.1
 
 
 # Rename project locally
-git remote set-url origin git@github.com:wiseupdata/vm_cluster_free_tier.git 
+# git remote set-url origin git@github.com:wiseupdata/vm_cluster_free_tier.git 
