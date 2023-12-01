@@ -1,6 +1,6 @@
 resource "oci_core_vcn" "this" {
   cidr_block     = var.vcn["cidr"]
-  compartment_id = var.compartment_id
+  compartment_id = var.compartment_id != "auto-create" ? var.compartment_id : oci_identity_compartment.this[0].id
   display_name   = "vcn-${var.app_name}-${var.env}"
   dns_label      = var.vcn["label"]
 
@@ -11,7 +11,7 @@ resource "oci_core_vcn" "this" {
 }
 
 resource "oci_core_internet_gateway" "this" {
-  compartment_id = var.compartment_id
+  compartment_id = var.compartment_id != "auto-create" ? var.compartment_id : oci_identity_compartment.this[0].id
   display_name   = "ig-${var.app_name}-${var.env}"
   enabled        = var.vcn["internet_gateway_enabled"]
   vcn_id         = oci_core_vcn.this.id
@@ -24,7 +24,7 @@ resource "oci_core_internet_gateway" "this" {
 
 resource "oci_core_nat_gateway" "this" {
   block_traffic  = "false"
-  compartment_id = var.compartment_id
+  compartment_id = var.compartment_id != "auto-create" ? var.compartment_id : oci_identity_compartment.this[0].id
   display_name   = "ng-${var.app_name}-${var.env}"
   vcn_id         = oci_core_vcn.this.id
 
@@ -35,7 +35,7 @@ resource "oci_core_nat_gateway" "this" {
 }
 
 resource "oci_core_route_table" "public" {
-  compartment_id = var.compartment_id
+  compartment_id = var.compartment_id != "auto-create" ? var.compartment_id : oci_identity_compartment.this[0].id
   display_name   = "rt-public-${var.app_name}-${var.env}"
   vcn_id         = oci_core_vcn.this.id
 
@@ -53,7 +53,7 @@ resource "oci_core_route_table" "public" {
 }
 
 resource "oci_core_security_list" "this" {
-  compartment_id = var.compartment_id
+  compartment_id = var.compartment_id != "auto-create" ? var.compartment_id : oci_identity_compartment.this[0].id
   vcn_id         = oci_core_vcn.this.id
 
   egress_security_rules {
@@ -109,14 +109,14 @@ resource "oci_core_subnet" "this" {
   for_each = var.subnets
 
   cidr_block                 = each.value["cidr"]
-  compartment_id             = var.compartment_id
+  compartment_id             = var.compartment_id != "auto-create" ? var.compartment_id : oci_identity_compartment.this[0].id
   display_name               = "${each.key}-${var.app_name}-${var.env}"
   dns_label                  = each.key
   prohibit_public_ip_on_vnic = "false"
   route_table_id             = oci_core_route_table.public.id
   security_list_ids          = ["${oci_core_security_list.this.id}"]
   vcn_id                     = oci_core_vcn.this.id
-  availability_domain        = var.availability_domain
+  availability_domain        = local.domain_ad
   dhcp_options_id            = oci_core_vcn.this.default_dhcp_options_id
 
   freeform_tags = {

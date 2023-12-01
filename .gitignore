@@ -34,3 +34,5 @@ override.tf.json
 terraform.rc
 set_tfvars.sh
 .terraform.lock.hcl
+
+.terraform

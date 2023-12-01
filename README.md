@@ -76,6 +76,11 @@ terraform destroy -auto-approve
 ## OCI credentials 🤜
 
 
+# Test you Vms
+
+```bash
+ssh -i ~/.ssh/id_rsa ubuntu@111.11.11.111
+```
 
 
 <br>
@@ -89,6 +94,8 @@ terraform destroy -auto-approve
 1. [Generate fingeprint](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm)
 1. [OCI regions](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm)
 
+# Create the credentials for the OCI
+
 ```bash
 mkdir ~/.oci
 rm ~/.oci/oci_api_key.pem
@@ -96,8 +103,13 @@ openssl genrsa -out ~/.oci/oci_api_key.pem 2048
 chmod go-rwx ~/.oci/oci_api_key.pem
 cat ~/.oci/oci_api_key.pem
 
+# Upload the public in the key session under the profile of the user
 openssl rsa -pubout -in ~/.oci/oci_api_key.pem -out ~/.oci/oci_api_key_public.pem
 cat ~/.oci/oci_api_key_public.pem
+
+# Ensure pb is security
+sudo chmod 600 ~/.ssh/id_rsa.pub
+
 ```
 
 ---
