@@ -15,7 +15,7 @@ Easy create a VM cluster Free Tier with 2 machines!
   <img align="left" alt="wise Up Data's LinkedIN" width="22px" src="https://raw.githubusercontent.com/wiseupdata/wiseupdata/main/assets/linkedin.png" />
 </a>
 
-![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fwiseupdata%2Fterraform-oci-cluster_vm&countColor=%2337d67a&style=flat)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fwiseupdata%2Fvm_cluster_free_tier&countColor=%2337d67a&style=flat)
 ![GitHub](https://img.shields.io/github/license/wiseupdata/terraform-oci-datalake)
 
 ---
@@ -23,25 +23,24 @@ Easy create a VM cluster Free Tier with 2 machines!
 <h1>
 <img align="left" alt="img" src="https://raw.githubusercontent.com/wiseupdata/terraform-oci-datalake/main/assets/terraform.png" width="100" />
 
-Module - Create a Data Lake / Delta Lake 🚀️
+Module - Create a Free Tier Cluster 🚀️
 
 </h1>
-Last version tested | Terraform 4.1 and oci 4.115
+Last version tested | Terraform 1.6.5 and oci v5.21.0
 
 ## Simple config. ❤️
 
 main.tf
 ```
-module "datalake" {
-  source           = "wiseupdata/datalake/oci"
-  version          = "0.0.1"
-  bucket_namespace = var.bucket_namespace
-  tenancy_ocid     = var.tenancy_ocid
+module "vm_cluster_free_tier" {
+  source  = "wiseupdata/vm_cluster_free_tier/oci"
+  version = "0.0.1"
 }
 ```
 
 ## Features ✨️
 
+- tenancy_ocid it's get automatic from the tfvars
 - Auto-generated tags
 - Auto-generated the compartment
 - Apply's the Standard, environment as suffix
@@ -60,10 +59,13 @@ terraform apply plan.output
 Check the result🏅
 
 ---
+```bash
+# Ensure pb is security
+sudo chmod 600 ~/.ssh/id_rsa.pub
 
-<a href="https://github.com/wiseupdata/wiseupdata">
-  <img align="center" alt="wise Up Data" width="90%" src="https://raw.githubusercontent.com/wiseupdata/terraform-oci-datalake/main/assets/result.gif" />
-</a>
+#Connect to your new VM using the public ip from the output
+ssh -i ~/.ssh/id_rsa ubuntu@111.11.11.111
+```
 
 ---
 
@@ -75,11 +77,25 @@ terraform destroy -auto-approve
 
 ## OCI credentials 🤜
 
-
-# Test you Vms
-
+### Create the local keys
 ```bash
-ssh -i ~/.ssh/id_rsa ubuntu@111.11.11.111
+
+# Pre install
+mkdir ~/.oci
+rm ~/.oci/oci_api_key.pem
+
+# Gen Private key
+openssl genrsa -out ~/.oci/oci_api_key.pem 2048
+chmod go-rwx ~/.oci/oci_api_key.pem
+cat ~/.oci/oci_api_key.pem
+
+# Gen Public Key
+openssl rsa -pubout -in ~/.oci/oci_api_key.pem -out ~/.oci/oci_api_key_public.pem
+```
+
+### Upload the public in the key session under the profile of the user
+```bash
+cat ~/.oci/oci_api_key_public.pem
 ```
 
 
@@ -93,24 +109,6 @@ ssh -i ~/.ssh/id_rsa ubuntu@111.11.11.111
 1. [Find variables from OCI](https://www.youtube.com/watch?v=bWdV2w27dl0)
 1. [Generate fingeprint](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm)
 1. [OCI regions](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm)
-
-# Create the credentials for the OCI
-
-```bash
-mkdir ~/.oci
-rm ~/.oci/oci_api_key.pem
-openssl genrsa -out ~/.oci/oci_api_key.pem 2048
-chmod go-rwx ~/.oci/oci_api_key.pem
-cat ~/.oci/oci_api_key.pem
-
-# Upload the public in the key session under the profile of the user
-openssl rsa -pubout -in ~/.oci/oci_api_key.pem -out ~/.oci/oci_api_key_public.pem
-cat ~/.oci/oci_api_key_public.pem
-
-# Ensure pb is security
-sudo chmod 600 ~/.ssh/id_rsa.pub
-
-```
 
 ---
 
