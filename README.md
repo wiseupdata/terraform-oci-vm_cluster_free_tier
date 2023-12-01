@@ -44,8 +44,9 @@ export TF_VAR_private_key_path="/home/wiseupdata/.oci/oci_api_key.pem"
 main.tf
 ```
 module "vm_cluster_free_tier" {
-  source  = "wiseupdata/vm_cluster_free_tier/oci"
-  version = "0.0.1"
+  source       = "wiseupdata/vm_cluster_free_tier/oci"
+  version      = "0.0.1"
+  tenancy_ocid = "ocid1.tenancy.oc1..aaaaaaa11111111111111111111"
 }
 ```
 
