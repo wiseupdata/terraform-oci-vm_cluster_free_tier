@@ -3,6 +3,7 @@
 ########################################
 # Get automatic from the TF_VARs
 variable "tenancy_ocid" {
+  description = "It's will be fetch automatic from the tfvars if not passed."
 }
 
 variable "company_name" {
@@ -24,7 +25,7 @@ variable "compartment_id" {
 }
 
 variable "availability_domain" {
-  description = "ad1, ad1 or ad3"
+  description = "ad1, ad2 or ad3"
   type        = string
   default     = "ad1"
 
@@ -51,6 +52,7 @@ variable "default_tags" {
 
 variable "oci_ssh_authorized_key" {
   default = "~/.ssh/id_rsa.pub"
+  description = "It can be generate using the command: ssh-keygen"
 }
 
 
@@ -85,7 +87,7 @@ variable "vms" {
 variable "vcn" {
   type = map(string)
   default = {
-    label                    = "etldf"
+    label                    = "etl"
     internet_gateway_enabled = "true"
     cidr                     = "30.0.0.0/16"
   }
@@ -97,7 +99,7 @@ variable "subnets" {
     sub1 = {
       cidr    = "30.0.10.0/24"
       adIndex = 0
-      label   = "1"
+      label   = "etl"
     }
   }
 }
