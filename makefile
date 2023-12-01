@@ -14,7 +14,7 @@ apply:
 	@clear
 	@terraform init
 	@terraform validate
-	@terraform fmt
+	@terraform fmt --recursive
 	@terraform apply --auto-approve
 
 # Terraform check
@@ -22,7 +22,7 @@ plan:
 	@clear
 	@terraform init
 	@terraform validate
-	@terraform fmt
+	@terraform fmt --recursive
 	@terraform plan
 
 # Specify that 'delete' is a phony target (i.e., it doesn't represent a file)

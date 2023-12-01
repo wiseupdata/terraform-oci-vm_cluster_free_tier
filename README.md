@@ -29,6 +29,16 @@ Module - Create a Free Tier Cluster 🚀️
 </h1>
 Last version tested | Terraform 1.6.5 and oci v5.21.0
 
+
+## Set the varibles with TF_Var for example:
+```
+export TF_VAR_tenancy_ocid="ocid1.tenancy.oc1..aaaaaaaa1111111111111"
+export TF_VAR_user_ocid="ocid1.user.oc1..aaaaaaaaa1111111"
+export TF_VAR_fingerprint="a5:fd:ec:9c:31c"
+export TF_VAR_region="eu-frankfurt-1"
+export TF_VAR_private_key_path="/home/wiseupdata/.oci/oci_api_key.pem"
+```
+
 ## Simple config. ❤️
 
 main.tf

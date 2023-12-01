@@ -51,7 +51,7 @@ variable "default_tags" {
 ########################################
 
 variable "oci_ssh_authorized_key" {
-  default = "~/.ssh/id_rsa.pub"
+  default     = "~/.ssh/id_rsa.pub"
   description = "It can be generate using the command: ssh-keygen"
 }
 
