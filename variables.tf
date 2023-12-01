@@ -5,14 +5,6 @@
 variable "tenancy_ocid" {
 }
 
-########################################
-# Optional 
-########################################
-
-variable "oci_ssh_authorized_key" {
-  default = "~/.ssh/id_rsa.pub"
-}
-
 variable "company_name" {
   description = "The name of the company."
   type        = string
@@ -52,6 +44,64 @@ variable "default_tags" {
   }
 }
 
+
+########################################
+# Optional for VMs
+########################################
+
+variable "oci_ssh_authorized_key" {
+  default = "~/.ssh/id_rsa.pub"
+}
+
+
+variable "image_name" {
+  default = "Canonical-Ubuntu-22.04-aarch64-2023.10.13-0"
+}
+
+variable "vms" {
+  type = map(any)
+  default = {
+    master-oci = {
+      shape   = "VM.Standard.A1.Flex"
+      storage = "50"
+      memory  = "4"
+      cpu     = "1"
+      label   = "1"
+    }
+    node-oci = {
+      shape   = "VM.Standard.A1.Flex"
+      storage = "50"
+      memory  = "20"
+      cpu     = "3"
+      label   = "2"
+    }
+  }
+}
+
+########################################
+# Optional for Networks
+########################################
+
+variable "vcn" {
+  type = map(string)
+  default = {
+    label                    = "etldf"
+    internet_gateway_enabled = "true"
+    cidr                     = "30.0.0.0/16"
+  }
+}
+
+variable "subnets" {
+  type = map(any)
+  default = {
+    sub1 = {
+      cidr    = "30.0.10.0/24"
+      adIndex = 0
+      label   = "1"
+    }
+  }
+}
+
 locals {
 
   basic_tags = {
@@ -67,4 +117,9 @@ locals {
     for ad in data.oci_identity_availability_domains.ADs.availability_domains : ad.name
     if can(regex(var.availability_domain, lower(replace(ad.name, "/[^a-zA-Z0-9]/", ""))))
   ][0]
+
+  # image_id = data.oci_core_images.ubuntu_images.images[0].id
+  image_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaao27f22d7avekl642gfes2ijwezsuupwhtteh4wwyjwwgvyxzlzcq"
+
 }
+
